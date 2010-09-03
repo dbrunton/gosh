@@ -8,10 +8,12 @@ import(
 
 func main() {
  fmt.Println("You've started gosh.")
- fmt.Printf("%s", Prompt())
- reader := bufio.NewReader(os.Stdin)
- input, _ := reader.ReadBytes('\n')
- fmt.Print(input)
+ for {
+  fmt.Printf("%s", Prompt())
+  reader := bufio.NewReader(os.Stdin)
+  input, _ := reader.ReadBytes('\n')
+  fmt.Print(input, "\n")
+ }
 }
 
 func Prompt() (prompt string) {
