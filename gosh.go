@@ -4,19 +4,27 @@ import(
  "fmt"
  "bufio"
  "os"
+ "io/ioutil"
 )
 
 func main() {
  fmt.Println("You've started gosh.")
  for {
-  fmt.Printf("%s", Prompt())
+  Prompt()
   reader := bufio.NewReader(os.Stdin)
   input, _ := reader.ReadBytes('\n')
-  fmt.Print(input, "\n")
+  if string(input) == "ls\n" { Ls(); } else { fmt.Printf("%s", input); }
  }
 }
 
-func Prompt() (prompt string) {
- prompt = "gosh> "
+func Prompt() {
+ fmt.Print("gosh> ")
  return
+}
+
+func Ls() {
+ files, _ := ioutil.ReadDir(".")
+ for _, v := range files {
+  fmt.Printf("%s\n", v.Name)
+ }
 }
