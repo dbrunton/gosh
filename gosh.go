@@ -9,7 +9,7 @@ import(
 )
 
 func main() {
- fmt.Println("You've started gosh.")
+ fmt.Println("You've started gosh. Try typing 'ls'.")
  for {
   Prompt()
   reader := bufio.NewReader(os.Stdin)
@@ -18,9 +18,10 @@ func main() {
   parsedInput := rx.ReplaceAllString(string(input), "")
   switch {
    case parsedInput == "ls":
+    fmt.Println("Yeah, baby, we know how to ls."
     ls()
    case true:
-    fmt.Printf("You typed '%s', which is not implemented.\n", input)
+    fmt.Printf("You typed '%s'.\nType something else.\n", parsedInput)
   }
  }
 }
