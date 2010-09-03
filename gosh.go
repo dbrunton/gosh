@@ -5,6 +5,7 @@ import(
  "bufio"
  "os"
  "io/ioutil"
+ "regexp"
 )
 
 func main() {
@@ -13,7 +14,14 @@ func main() {
   Prompt()
   reader := bufio.NewReader(os.Stdin)
   input, _ := reader.ReadBytes('\n')
-  if string(input) == "ls\n" { Ls(); } else { fmt.Printf("%s", input); }
+  rx, _ := regexp.Compile("\n");
+  parsedInput := rx.ReplaceAllString(string(input), "")
+  switch {
+   case parsedInput == "ls":
+    ls()
+   case true:
+    fmt.Printf("You typed '%s', which is not implemented.\n", input)
+  }
  }
 }
 
@@ -22,7 +30,7 @@ func Prompt() {
  return
 }
 
-func Ls() {
+func ls() {
  files, _ := ioutil.ReadDir(".")
  for _, v := range files {
   fmt.Printf("%s\n", v.Name)
