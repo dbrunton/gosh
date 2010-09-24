@@ -19,7 +19,7 @@ func main() {
 			case "cd":
 				os.Chdir(arg)
 			case "ls":
-				ls()
+				ls(arg)
 			case "exit", "quit":
 				return
 			default:
@@ -33,8 +33,9 @@ func Prompt() {
 	return
 }
 
-func ls() {
-	files, _ := ioutil.ReadDir(".")
+func ls(dir string) {
+	if dir == `` { dir = "."; }
+	files, _ := ioutil.ReadDir(dir)
 	for _, v := range files {
 		fmt.Printf("%s\n", v.Name)
 	}
