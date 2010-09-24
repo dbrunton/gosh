@@ -49,8 +49,8 @@ func chomp(input string) string {
 func parse(input string) (string, string) {
 	rx := regexp.MustCompile("[^ ]*")
 	output := rx.FindAllString(input, 2)
-  	if(len(output) == 1) {
-  		return output[0], ""
+	if(len(output) == 1) {
+		return output[0], ""
 	}
 	return output[0], output[1]
 }
