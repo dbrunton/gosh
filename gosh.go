@@ -16,11 +16,11 @@ func main() {
 //  input, _ := reader.ReadBytes('\n')
   input, _ := bufio.NewReader(os.Stdin).ReadString('\n')
   input = chomp(input)
-  arg := "/home/dbrunton"
+  command, arg := parse(input)
   switch {
-   case (input == "cd"):
+   case (command == "cd"):
     os.Chdir(arg)
-   case (input == "ls"):
+   case (command == "ls"):
     ls()
    case true:
     fmt.Printf("You typed '%s'.\nType something else.\n", input)
@@ -44,4 +44,13 @@ func chomp(input string) string {
   rx, _ := regexp.Compile("\n");
   chompedInput := rx.ReplaceAllString(string(input), "")
   return chompedInput
+}
+
+func parse(input string) (string, string) {
+	rx := regexp.MustCompile("[^ ]*")
+	output := rx.FindAllString(input, 2)
+  	if(len(output) == 1) {
+  		return output[0], ""
+	}
+	return output[0], output[1]
 }
