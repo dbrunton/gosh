@@ -12,16 +12,18 @@ func main() {
  fmt.Println("You've started gosh. Try typing 'ls'.")
  for {
   Prompt()
-  reader := bufio.NewReader(os.Stdin)
-  input, _ := reader.ReadBytes('\n')
-  rx, _ := regexp.Compile("\n");
-  parsedInput := rx.ReplaceAllString(string(input), "")
+//  reader := bufio.NewReader(os.Stdin)
+//  input, _ := reader.ReadBytes('\n')
+  input, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+  input = chomp(input)
+  arg := "/home/dbrunton"
   switch {
-   case parsedInput == "ls":
-    fmt.Println("Yeah, baby, we know how to ls."
+   case (input == "cd"):
+    os.Chdir(arg)
+   case (input == "ls"):
     ls()
    case true:
-    fmt.Printf("You typed '%s'.\nType something else.\n", parsedInput)
+    fmt.Printf("You typed '%s'.\nType something else.\n", input)
   }
  }
 }
@@ -36,4 +38,10 @@ func ls() {
  for _, v := range files {
   fmt.Printf("%s\n", v.Name)
  }
+}
+
+func chomp(input string) string {
+  rx, _ := regexp.Compile("\n");
+  chompedInput := rx.ReplaceAllString(string(input), "")
+  return chompedInput
 }
