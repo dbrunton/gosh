@@ -20,7 +20,7 @@ func main() {
 				os.Chdir(arg)
 			case "ls":
 				ls()
-			case "exit":
+			case "exit", "quit":
 				return
 			default:
 				fmt.Printf("You typed '%s'.\nType something else.\n", input)
