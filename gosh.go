@@ -8,6 +8,8 @@ import(
  "regexp"
 )
 
+// test edit from within gosh
+
 func main() {
 	for {
 		Prompt()
@@ -21,7 +23,10 @@ func main() {
 			case "ls":
 				ls(arg)
 			case "exit", "quit":
-				return
+				os.Exit(0)
+			case "vi":
+				pid, _ := os.ForkExec("/usr/bin/vim", []string{``,arg}, os.Environ(), "", []*os.File{os.Stdin, os.Stdout, os.Stderr})
+				os.Wait(pid, 0) 
 			default:
 				fmt.Printf("You typed '%s'.\nType something else.\n", input)
 		}
