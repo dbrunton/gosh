@@ -6,6 +6,7 @@ import(
  "os"
  "io/ioutil"
  "regexp"
+ "manifest"
 )
 
 // test edit from within gosh
@@ -18,6 +19,8 @@ func main() {
 		command, arg := parse(input)
 
 		switch command {
+			case "manifest":
+				fmt.Printf(manifest.Manifest(arg))
 			case "cd":
 				os.Chdir(arg)
 			case "ls":
