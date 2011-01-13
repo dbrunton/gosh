@@ -1,7 +1,3 @@
-Nothing to see here, just learning to go.
+Study in REPL.  Set up to recognize three commands: ls, print, and everything else.  ls does what you expect, except you have to make a print call on subsequent lines.
 
-If, for whatever reason, you want to build, you should just type make.  If, once you've made, and you decide to install, you are an idiot.  But you can just type make install.  It will probably put it somewhere like $GOROOT/bin or $HOME/bin if you have a typical go installation.
-
-Mostly what I'm interested in is making something that is vaguely shell-ish, except not optimized for calling other executables, not dependent upon other programs in /usr/bin etc., somewhat parallel, and generally self aware.
-
-Interested in making commands into an interface{} of some kind, executing them on a channel.
+For what it's worth, this is a one-term version of what we've been talking about.  I'll do a two-term version next...
